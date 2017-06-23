@@ -19,7 +19,7 @@ window.onload = function(){
 
 if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
     window_height = document.body.clientHeight*2/3;
-    MARGIN_TOP = Math.round(window_width);
+    MARGIN_TOP = Math.round(window_width*1.2);
     RADIUS = (Math.round(window_width*4/5/108)-1)*2.6;
     canvas.style.width=window_width+'px'
     canvas.style.height=window_height+'px'
@@ -119,14 +119,28 @@ function addBalls(x,y,num){
       for(var i=0;i<digit[num].length;i++)
         for(var j=0;j<digit[num][i].length;j++)
         if(digit[num][i][j] ==1){
-            var aBall = {
+            var aBall;
+          if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+             aBall = {
                 x:x+j*2*(RADIUS+1)+(RADIUS+1),
                 y:y+i*2*(RADIUS+1)+(RADIUS+1),
                 g:1.5+Math.random(),
-                vx:Math.pow(-1,Math.ceil(Math.random()*1000))*4,
-                vy:-5,
+                vx:Math.pow(-1,Math.ceil(Math.random()*1000))*3,
+                vy:-10,
                 color:colors[Math.floor(Math.random()*colors.length)]
             }
+            } else {
+              aBall = {
+                x:x+j*2*(RADIUS+1)+(RADIUS+1),
+                y:y+i*2*(RADIUS+1)+(RADIUS+1),
+                g:4.5+Math.random(),
+                vx:Math.pow(-1,Math.ceil(Math.random()*1000))*7,
+                vy:-40,
+                color:colors[Math.floor(Math.random()*colors.length)]
+            }
+            }
+
+            
             balls.push(aBall)
         }
 }
