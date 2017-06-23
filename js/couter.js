@@ -8,25 +8,36 @@ const endTime = new Date(2017,5,25,11,29,56)
 var curShowTimeSeconds = 0
 
 var balls = [];
+  var canvas = document.getElementById("canvas");
+  var context = canvas.getContext("2d");
 const colors = ["#33b5e5","#0099cc","#aa66cc","#9933cc","#99cc00","#669900","#ffbb33","#ff8800","#cc0000"]
 
 window.onload = function(){
   window_width = document.body.clientWidth;
-  window_height = document.body.clientHeight;
-  
   MARGIN_LEFT = Math.round(window_width/10);
-  RADIUS = (Math.round(window_width*4/5/108)-1)*2;
-  MARGIN_TOP = Math.round(window_width/3);
-  var canvas = document.getElementById("canvas");
-  var context = canvas.getContext("2d");
+  
+
+if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    window_height = document.body.clientHeight*2/3;
+    MARGIN_TOP = Math.round(window_width);
+    RADIUS = (Math.round(window_width*4/5/108)-1)*2.6;
+    canvas.style.width=window_width+'px'
+    canvas.style.height=window_height+'px'
+} else {
+   window_height = document.body.clientHeight;
+   MARGIN_TOP = Math.round(window_width/3);
+   RADIUS = (Math.round(window_width*4/5/108)-1)*2;
+     canvas.style.width=window_width*4/5+'px'
+  canvas.style.height=window_height*4/5+'px'
+}
+ canvas.setAttribute('width', window_width*2 );
+ canvas.setAttribute('height', window_height*2);
+
   curShowTimeSeconds = getCurShowTimeSeconds()
 
 
  
- canvas.setAttribute('width', window_width*2 );
- canvas.setAttribute('height', window_height*2);
-  canvas.style.width=window_width*4/5+'px'
-  canvas.style.height=window_height*4/5+'px'
+
 
   setInterval(
       function(){
