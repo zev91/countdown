@@ -4,13 +4,14 @@ var RADIUS;
 var MARGIN_TOP;
 var MARGIN_LEFT;
 
-const endTime = new Date(2017,5,25,11,29,56)
+var endTime = new Date();
+endTime.setTime(endTime.getTime()+12*3600*1000)
 var curShowTimeSeconds = 0
 
 var balls = [];
   var canvas = document.getElementById("canvas");
   var context = canvas.getContext("2d");
-const colors = ["#33b5e5","#0099cc","#aa66cc","#9933cc","#99cc00","#669900","#ffbb33","#ff8800","#cc0000"]
+ const colors = ["#33b5e5","#0099cc","#aa66cc","#9933cc","#99cc00","#669900","#ffbb33","#ff8800","#cc0000"]
 
 window.onload = function(){
   window_width = document.body.clientWidth;
@@ -134,8 +135,8 @@ function addBalls(x,y,num){
                 x:x+j*2*(RADIUS+1)+(RADIUS+1),
                 y:y+i*2*(RADIUS+1)+(RADIUS+1),
                 g:4.5+Math.random(),
-                vx:Math.pow(-1,Math.ceil(Math.random()*1000))*7,
-                vy:-40,
+                vx:Math.pow(-1,Math.ceil(Math.random()*1000))*5,
+                vy:-10,
                 color:colors[Math.floor(Math.random()*colors.length)]
             }
             }
